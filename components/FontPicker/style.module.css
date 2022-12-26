@@ -1,0 +1,48 @@
+.fontPickerLI {
+    height: 40px;
+  }
+  
+  .editorButtonContainer {
+    position: relative;
+  }
+  
+  .editorButtonContainer button:focus {
+    outline: 0;
+  }
+  
+  .fontPickerLI:hover svg path {
+    fill:#FFCB00;
+  }
+  
+  .fontPickerContainer {
+    position: absolute;
+    z-index: 3;
+  }
+  
+  .fontPickerDropdown {
+    height: 200px;
+    top: 20px;
+    position: absolute;
+    width: 200px;
+    z-index: 3;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 0px 0px 1px, rgba(0, 0, 0, 0.14902) 0px 8px 16px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    left: -20px;
+  }
+  
+  .fontPickerDropdown li {
+    border-bottom: 1px solid #CCC;
+  }
+  
+  .fontList {
+    padding: 0px;
+  }
+  
+  .fontList li:hover {
+    background-color: #FFCB00;
+    color: white;
+  }

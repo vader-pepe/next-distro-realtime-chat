@@ -1,0 +1,56 @@
+.topLevel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #CCC;
+    transition: 0.3s;
+    user-select: none;
+  }
+  
+  .topLevel:hover:not(.topLevelSelected) {
+    color: #ff5a5f;
+    transition: 0.3s;
+  }
+  
+  .topLevelSelected {
+    composes: topLevel;
+    background-color: #ff5a5f;
+    color: white;
+  }
+  
+  .topLevel:first-child {
+    border-top-left-radius: 15px;
+  }
+  
+  .topLevel:last-child {
+    border-top-right-radius: 15px;
+  }
+  
+  .lowLevel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #CCC;
+    user-select: none;
+  }
+  
+  .lowLevel:hover {
+    color: #ff5a5f;
+  }
+  
+  .lowLevelSelected {
+    color: #ff5a5f;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 10px;
+    border: 1px solid #ff5a5f;
+  }
+  

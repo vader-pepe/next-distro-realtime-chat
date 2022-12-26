@@ -1,0 +1,43 @@
+.editorButtonGroup {
+    padding: 0px;
+    margin: 0px;
+    max-width: 40px;
+    border-radius: 10px;
+    list-style: none;
+    background-color: white;
+    box-shadow: #BFBFBE 0 10px 50px;
+    margin: 30px 0px;
+  }
+  
+  .editorButtonGroup:first-child {
+    margin: 0px;
+  }
+  
+  .editorButtonGroup li {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .editorButtonContainer {
+    position: relative;
+  }
+  
+  .editorButtonContainer button:focus {
+    outline: 0;
+  }
+  
+  .editorButtonGroup li div:hover span {
+    opacity: 1;
+    transition: 150ms ease-out;
+  }
+  
+  .editorButtonGroup li:hover span {
+    opacity: 1;
+    transition: 150ms ease-out;
+  }
+  
+  .editorButtonGroup li:hover button svg path {
+    fill: #ff5a5f;
+  }
