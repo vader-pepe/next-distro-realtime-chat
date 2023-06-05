@@ -41,6 +41,7 @@ const topLevelTabs = [
         id: 'art',
       },
     ],
+    detail: []
   };
   
   const apparelTypes = {

@@ -1,11 +1,28 @@
+import { useDispatch } from 'react-redux';
 import ClothingListItem from '../../components/ClothingListItem';
 import EditorView from '../../components/EditorView';
 import QuoteForm from '../../components/QuoteForm';
 import SelectionTab from '../../components/SelectionTab';
+import { changeLowLevelTab, changeOrderQuantity, changeTopLevelTab, selectNewProduct } from '../../store/app/reducer';
 import { apparelTypes, lowLevelTabs, topLevelTabs } from './mock';
 import styles from './style.module.css';
 
-const Custom = (props: any) => {
+interface CustomPageIF {
+  topLevelTab: 'apparel' | 'element' | 'detail'
+  lowLevelTab: 'sweater' | 'shirt'
+  currentProduct: boolean | object
+  orderQuantityData: object
+}
+
+const Custom = ({
+  topLevelTab,
+  lowLevelTab,
+  currentProduct,
+  orderQuantityData,
+  ...props
+}: CustomPageIF) => {
+  // TODO: when success adding to cart, clear canvas
+  const dispatch = useDispatch()
 
   const renderTopLevelTabs = () => {
     return topLevelTabs.map((each) =>
@@ -13,32 +30,32 @@ const Custom = (props: any) => {
         tabType="topLevel"
         key={each.id}
         type={each.id}
-        isSelected={props.topLevelTab === each.id}
-        onClick={props.changeTopLevelTab}
+        isSelected={topLevelTab === each.id}
+        onClick={(param) => dispatch(changeTopLevelTab(param))}
       >
         {each.name}
       </SelectionTab>);
   }
 
   const renderLowerLevelTabs = () => {
-    return lowLevelTabs[props.topLevelTab].map((each) =>
+    return lowLevelTabs[topLevelTab].map((each) =>
       <SelectionTab
         tabType="lowLevel"
         key={each.id}
         type={each.id}
-        isSelected={props.lowLevelTab === each.id}
-        onClick={props.changeLowLevelTab}
+        isSelected={lowLevelTab === each.id}
+        onClick={(param) => dispatch(changeLowLevelTab(param))}
       >
         {each.name}
       </SelectionTab>);
   }
 
   const renderClothingItems = () => {
-    return apparelTypes[props.lowLevelTab] && apparelTypes[props.lowLevelTab].map((each) =>
+    return apparelTypes[lowLevelTab] && apparelTypes[lowLevelTab].map((each) =>
       <ClothingListItem
         key={each.name}
         data={each}
-        onClickProduct={(newProduct) => props.selectNewProduct(newProduct)}
+        onClickProduct={(param) => dispatch(selectNewProduct(param))}
       />
     );
   }
@@ -46,9 +63,9 @@ const Custom = (props: any) => {
   const renderDetailView = () => {
     return (
       <QuoteForm
-        productData={props.currentProduct}
-        sizeData={props.orderQuantityData}
-        onChangeAmount={props.changeOrderQuantity}
+        productData={currentProduct}
+        sizeData={orderQuantityData}
+        onChangeAmount={(param) => dispatch(changeOrderQuantity(param))}
         onClickAddToCart={(tableData, priceData) => {
           const currentProductJSON = editor.onRequestJSON();
           props.clickAddToCart(tableData, priceData, currentProductJSON);
@@ -58,7 +75,7 @@ const Custom = (props: any) => {
   }
 
   const renderContentContainer = () => {
-    switch (props.topLevelTab) {
+    switch (topLevelTab) {
       case 'apparel':
         return renderClothingItems();
       case 'element':
